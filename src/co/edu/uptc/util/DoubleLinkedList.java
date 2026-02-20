@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class DoubleLinkedList<T> implements List<T>{
@@ -19,8 +20,24 @@ public class DoubleLinkedList<T> implements List<T>{
     }
 
     @Override
-    public IteratorDL<T> iterator() {
-        IteratorDL <T> iterator = new IteratorDL<T>(this);
+    public Iterator<T> iterator() {
+        Iterator<T> iterator = new Iterator<T>(){
+            int index = 0;
+            @Override
+            public boolean hasNext(){
+                return index < size();
+            }
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                throw new NoSuchElementException();
+                }
+                T data = get(index);
+               index++;
+               return data;
+            }
+
+        };
         return iterator;
     }
 
