@@ -19,9 +19,9 @@ public class DoubleLinkedList<T> implements List<T>{
     }
 
     @Override
-    public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+    public IteratorDL<T> iterator() {
+        IteratorDL <T> iterator = new IteratorDL<T>(this);
+        return iterator;
     }
 
     @Override
